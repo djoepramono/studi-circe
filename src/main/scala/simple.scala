@@ -2,6 +2,8 @@ package com.studikode.studicirce
 
 import io.circe.parser
 import io.circe.generic.semiauto.deriveDecoder
+// alternatively, you can use the following instead of deriveDecoder
+// import io.circe.generic.auto._
 
 case class Staff(name: String)
 
