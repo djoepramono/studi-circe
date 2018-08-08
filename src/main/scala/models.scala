@@ -1,13 +1,11 @@
 package com.studikode.studicirce
 
-case class Library (librarian: Librarian, books: Book)
 case class Librarian (name: String)
-case class Simple(name: String)
-case class Book (title: String, tags: List[Tag])
+case class TodayRoster ( onDuty: List[Librarian], backup: List[Librarian])
 
-sealed case class Tag()
-object Scifi extends Tag
-object Education extends Tag
+case class Library (librarian: Librarian, books: Book)
+
+case class Book (title: String, tags: List[Tag])
 
 object Tag {
   def fromString(s: String): Option[Tag] = {
@@ -18,3 +16,7 @@ object Tag {
     }
   }
 }
+
+sealed case class Tag()
+object Scifi extends Tag
+object Education extends Tag

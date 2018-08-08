@@ -7,7 +7,7 @@ import io.circe.generic.auto._
 
 case class Applicant(firstName: String, lastName: Option[String])
 
-object OptionDecoder {
+object GenericAutoDecoder {
   def main(args: Array[String]): Unit = {
     val inputString =
       """
