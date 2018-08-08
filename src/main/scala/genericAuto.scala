@@ -13,11 +13,15 @@ object GenericAutoDecoder {
       """
       [
         {
-          "firstName": "Mary",
+          "firstName": "Marrie",
           "lastName": "Jane"
         },
         {
-          "firstName": "Peter"
+          "firstName": "Pete"
+        },
+        {
+          "firstName": "Gwent",
+          "lastName": null
         }
       ]
       """.stripMargin
