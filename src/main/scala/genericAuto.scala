@@ -1,8 +1,6 @@
 package com.studikode.studicirce
 
 import io.circe.parser
-import io.circe.HCursor
-import io.circe.Decoder
 import io.circe.generic.auto._
 
 case class Applicant(firstName: String, lastName: Option[String])
