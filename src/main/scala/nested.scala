@@ -48,7 +48,7 @@ object NestedDecoder {
     val decodeResult = decode[Team](input)
 
     decodeResult match {
-      case Right(book) => println(book)
+      case Right(team) => println(team)
       case Left(error) => println(error.getMessage())
     }
   }
