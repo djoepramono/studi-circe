@@ -3,6 +3,7 @@ package com.studikode.studicirce
 import io.circe.parser
 import io.circe.HCursor
 import io.circe.Decoder
+// import io.circe.generic.semiauto.deriveDecoder
 
 case class Student(name: String)
 
@@ -21,7 +22,7 @@ object ArrayDecoder {
       """.stripMargin
 
     // you can use deriveDecoder like below
-    // implicit val studentDecoder = deriveDecoder[List[Student]]
+    implicit val studentDecoder = deriveDecoder[Student]
 
     // or you can write your own decoder
     implicit val studentDecoder: Decoder[Student] = (hCursor: HCursor) => {
