@@ -4,51 +4,37 @@ import io.circe.parser
 import io.circe.HCursor
 import io.circe.Decoder
 
-sealed trait Level
-case object Beginner extends Level
-case object Intermediate extends Level
-case object Advanced extends Level
-
-case class Error(value: String)
-
-object Level {
-  def fromString(value: String): Either[Error, Level] =
-    value.toLowerCase match {
-      case "beginner" => Right(Beginner)
-      case "intermediate" => Right(Intermediate)
-      case "advanced" => Right(Advanced)
-      case _ => Left(Error("Unknown String"))
-    }
-}
+case class Citizen(name: String, age: Int)
 
 object ManualDecoder {
   def main(args: Array[String]): Unit = {
     val inputString =
       """
       [
-        "intermediate", "beginner","master"
+        {
+          "name": "Maggie",
+          "age": 33,
+          "country": "Australia"
+        },
+        {
+          "name": "Moggie",
+          "age": 17,
+          "country": "New Zealand"
+        }
       ]
       """.stripMargin
 
-    implicit val ratingDecoder: Decoder[Either[Error,Level]] =
-      (hCursor: HCursor) => {
-        for {
-          possibleString <- hCursor.as[String]
-          x = Level.fromString(possibleString)
-        } yield x
-
-        // alternatively the above can be written as
-        // hCursor.as[String].map(Level.fromString)
+    implicit val citizenDecoder: Decoder[Citizen] = (hCursor: HCursor) => {
+      for {
+        name <- hCursor.get[String]("name")
+        age <- hCursor.downField("age").as[Int]
+      } yield Citizen(name, age)
     }
 
-    val decodingResult = parser.decode[List[Either[Error,Level]]](inputString)
+    val decodingResult = parser.decode[List[Citizen]](inputString)
 
     decodingResult match {
-      case Right(maybeLevelList) =>
-        maybeLevelList.map(maybeLevel => maybeLevel match {
-          case Left(error) => println(error.value)
-          case Right(level) => println(level)
-        })
+      case Right(citizens) => citizens.map(println)
       case Left(error) => println(error.getMessage())
     }
   }
