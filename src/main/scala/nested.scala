@@ -26,9 +26,6 @@ object NestedDecoder {
       }
       """.stripMargin
 
-    // won't work
-    //implicit val argh: Decoder[List[Contestant]] = decode[List[Contestant]]
-
     // works fine with lazy
     // otherwise it's forward reference extends over definition of value teamDecoder
     // basically it's not lazy enough for scala
