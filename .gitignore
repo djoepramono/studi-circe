@@ -18,3 +18,7 @@ project/plugins/project
 .project
 .classpath
 .settings/
+
+#Metals
+.bloop/
+.metals/

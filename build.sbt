@@ -2,7 +2,7 @@ name := "Studi Circe"
 
 version := "1.0"
 
-scalaVersion := "2.12.4"
+scalaVersion := "2.12.10"
 
 val circeVersion = "0.7.0"
 
